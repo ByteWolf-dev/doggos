@@ -41,7 +41,7 @@
                 const gallery = document.getElementById('gallery');
                 images.forEach(image => {
                     const img = document.createElement('img');
-                    img.src = `dogs/${image}`;
+                    img.src = `/dogs/${image}`;  // Correct path for images
                     img.alt = image;
                     gallery.appendChild(img);
                 });

@@ -5,11 +5,13 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files
-app.use(express.static('.'));
+// Serve static files from the "public" directory (includes your index.html)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve static images from the "dogs" folder (images you want to display in the gallery)
 app.use('/dogs', express.static(path.join(__dirname, 'dogs')));
 
-// API endpoint to get list of images
+// API endpoint to get the list of images in the dogs folder
 app.get('/api/images', (req, res) => {
     const imageFolder = path.join(__dirname, 'dogs');
     fs.readdir(imageFolder, (err, files) => {
@@ -23,7 +25,7 @@ app.get('/api/images', (req, res) => {
     });
 });
 
-// Start server
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
